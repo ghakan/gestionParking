@@ -2,6 +2,22 @@
 <html>
 <head>
 	<title>Gestion Parking</title>
+	<script>
+	function validateForm() {
+	    var x = document.forms["myForm"]["matricula"].value;
+	    if (x.length > 7) {
+	        alert("Error, matricula demasiado larga.");
+	        //return false;
+	    }
+	    var condicion = /^[0-9]{4}[A-Z,a-z]{3}$/;
+		if(condicion.test(x)){
+			alert("La matricula es correcta");
+		}
+		else {
+			alert("La matricula NO es correcta");
+		}
+	}
+	</script>
 </head>
 <body>
 	<h1>Gestion de Parking</h1>
@@ -10,10 +26,11 @@
 		<input type="submit" value="Mostrar">
 	</form>
 	<br /><br />
-	<form action="comprobacionContacto" method="post" enctype="text/plain">
+	<form name="myForm" action="Main"
+		onsubmit="return validateForm()" method="post">
 		<h2>Buscar vehiculo</h2>
-		Matricula: <input type="text" id="matricula" name="matricula" size="12" maxlength="10">
-		<input type="submit" value="Buscar vehiculo">
+		Matricula: <input type="text" id="matricula" name="matricula" size="12" maxlength="10" required>
+		<input type="submit" value="Submit">
 	</form>
 </body>
 </html>
